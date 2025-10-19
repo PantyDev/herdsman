@@ -1,6 +1,7 @@
 import { Container, Graphics, AnimatedSprite } from 'pixi.js';
 import type { IMovable, IVisualData } from '../../types/actor';
 import { DEBUG_COLLIDERS } from '../../core/utils/constants';
+import { DropShadowFilter } from 'pixi-filters/drop-shadow';
 
 abstract class BaseActor extends Container implements IMovable {
   protected body: Graphics | null = null;
@@ -26,8 +27,15 @@ abstract class BaseActor extends Container implements IMovable {
       this.sprite = null;
     }
     if (!visual) return;
+
     this.sprite = new AnimatedSprite(visual.textures);
     this.sprite.anchor.set(visual.anchor);
+    this.sprite.filters = [new DropShadowFilter({
+      color: 0x000000,
+      alpha: 0.5,
+      blur: 4,
+      offset: { x: 4, y: 4 },
+    })];
     this.sprite.animationSpeed = visual.animationSpeed;
     
     this.addChildAt(this.sprite, 0);

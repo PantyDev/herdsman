@@ -10,15 +10,19 @@ export class Game {
     this.app = new Application();
   }
 
-  async init() {
+  async init(withoutLoadAssets = false) {
     await this.app.init({ 
         width: GAME_WIDTH,
         height: GAME_HEIGHT,
-        backgroundColor: COLORS.background, 
+        backgroundColor: COLORS.background
     });
 
     document.body.appendChild(this.app.canvas);
     
+    if(withoutLoadAssets) {
+      new GameManager(this.app); 
+      return;
+    }
     loadAssets().then(() => {
       new GameManager(this.app); 
     });

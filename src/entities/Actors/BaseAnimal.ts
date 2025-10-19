@@ -9,6 +9,7 @@ export class BaseAnimal extends BaseActor {
   private target: Point;
   private patrolController: AnimalPatrolController;
   protected speed = 1.5;
+  protected scoreMultiplier = 1;
   private _prevX: number = 0;
   private _prevY: number = 0;
 
@@ -35,6 +36,7 @@ export class BaseAnimal extends BaseActor {
 
   update(delta: number) {
     let isMoving = false;
+    this.zIndex = Math.round(this.y);
 
     if (!this.leader) {
         isMoving = this.move(this.target, this.speed * delta);
@@ -49,20 +51,23 @@ export class BaseAnimal extends BaseActor {
     this.setMoving(isMoving);
   }
 
-    private move(target: Point, speed: number): boolean {
-        const moved = moveTowards(this.position, target, speed, 0.5);
-        this.patrolController.update();
-        if (moved) {
-            const dx = this.x - (this._prevX ?? this.x);
-            const dy = this.y - (this._prevY ?? this.y);
-            this.updateVisualFromDelta(dx, dy);
-        } else {
-            this.updateVisualFromDelta(0, 0);
-        }
-        this._prevX = this.x; this._prevY = this.y;
-        return moved;
+  private move(target: Point, speed: number): boolean {
+    const moved = moveTowards(this.position, target, speed, 0.5);
+    this.patrolController.update();
+    if (moved) {
+        const dx = this.x - (this._prevX ?? this.x);
+        const dy = this.y - (this._prevY ?? this.y);
+        this.updateVisualFromDelta(dx, dy);
+    } else {
+        this.updateVisualFromDelta(0, 0);
     }
+    this._prevX = this.x; this._prevY = this.y;
+    return moved;
+  }
 
+  getScoreMultiplier() {
+    return this.scoreMultiplier;
+  }
 
   isInYard(yard: Container): boolean {
     return yard.getBounds().rectangle.contains(this.x, this.y);

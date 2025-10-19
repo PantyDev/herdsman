@@ -21,7 +21,7 @@ export class Hero extends BaseActor {
 
   update(delta: number) {
     if (!this.target) return;
-    this.zIndex = this.y;
+    this.zIndex = Math.round(this.y);
     const dist = distance(this.position, this.target);
 
     if (dist > 1) {

@@ -1,4 +1,4 @@
-import { Application, Text } from 'pixi.js';
+import { Application } from 'pixi.js';
 import { Yard } from '../../entities/Yard';
 import { BaseAnimal } from '../../entities/Actors/BaseAnimal';
 import { Hero } from '../../entities/Actors/Hero';

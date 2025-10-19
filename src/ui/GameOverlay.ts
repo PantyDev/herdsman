@@ -1,4 +1,4 @@
-import { Container, Graphics, Text, type ContainerChild, type StrokeInput } from 'pixi.js';
+import { Container, Text, type ContainerChild, type StrokeInput } from 'pixi.js';
 import { GAME_HEIGHT, GAME_WIDTH } from '../core/utils/constants';
 
 export class GameOverlay {

@@ -1,0 +1,10 @@
+
+import { VISUAL_CONFIG } from '../../core/utils/constants';
+import { BaseAnimal } from './BaseAnimal';
+
+export class Cow extends BaseAnimal {
+    constructor(x: number, y: number) {
+        super(x, y, 35, 0x000fff, VISUAL_CONFIG.cow);
+        this.speed = 0.7;
+    }
+}

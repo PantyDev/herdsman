@@ -1,6 +1,7 @@
 import { Application } from 'pixi.js';
-import { GameManager } from './GameManager';
-import { COLORS, GAME_HEIGHT, GAME_WIDTH } from './constants';
+import GameManager from './GameManager';
+import { COLORS, GAME_HEIGHT, GAME_WIDTH } from '../utils/constants';
+import { loadAssets } from '../utils/assetLoader';
 
 export class Game {
   private app: Application;
@@ -18,6 +19,8 @@ export class Game {
 
     document.body.appendChild(this.app.canvas);
     
-    new GameManager(this.app);
+    loadAssets().then(() => {
+      new GameManager(this.app); 
+    });
   }
 }

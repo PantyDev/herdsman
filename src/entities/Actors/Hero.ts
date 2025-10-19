@@ -1,43 +1,53 @@
 import { Point } from 'pixi.js';
-import { Animal } from './Animal';
+import { BaseAnimal } from './BaseAnimal';
 import BaseActor from './BaseActor';
 import { distance, moveTowards } from '../../lib/math';
+import type { IVisualData } from '../../types/actor';
 
 export class Hero extends BaseActor {
-    private speed = 2;
-    private target: Point | null = null;
-    private followers: Animal[] = [];
+  private speed = 2;
+  private target: Point;
+  private followers: BaseAnimal[] = [];
 
-    constructor(x: number, y: number) {
-        super(x, y, 15, 0xff0000);
-        this.target = new Point(x, y);
+  constructor(x: number, y: number, visual?: IVisualData | null) {
+    super(x, y, 15, 0xff0000);
+    this.target = new Point(x, y);
+    this.setVisual(visual);
+  }
+
+  setTarget(x: number, y: number) {
+    this.target.set(x, y);
+  }
+
+  update(delta: number) {
+    if (!this.target) return;
+    this.zIndex = this.y;
+    const dist = distance(this.position, this.target);
+
+    if (dist > 1) {
+      const oldX = this.x;
+      const oldY = this.y;
+      moveTowards(this.position, this.target, this.speed * delta);
+      const dx = this.x - oldX;
+      const dy = this.y - oldY;
+      this.updateVisualFromDelta(dx, dy);
+    } else {
+      this.setMoving(false);
     }
+  }
 
-    setTarget(x: number, y: number) {
-        this.target?.set(x, y);
+  tryAddFollower(animal: BaseAnimal) {
+    if (this.followers.length < 5 && !this.followers.includes(animal)) {
+      this.followers.push(animal);
+      animal.follow(this);
     }
+  }
 
-    update(delta: number) {
-        if (!this.target) return;
-        const dist = distance(this.position, this.target);
+  getFollowers(): BaseAnimal[] {
+    return this.followers;
+  }
 
-        if (dist > 1) {
-            moveTowards(this.position, this.target, this.speed * delta);
-        }
-    }
-
-    tryAddFollower(animal: Animal) {
-        if (this.followers.length < 5 && !this.followers.includes(animal)) {
-            this.followers.push(animal);
-            animal.follow(this);
-        }
-    }
-
-    getFollowers(): Animal[] {
-        return this.followers;
-    }
-
-    removeFollower(animal: Animal) {
-        this.followers = this.followers.filter(a => a !== animal);
-    }
+  removeFollower(animal: BaseAnimal) {
+    this.followers = this.followers.filter(a => a !== animal);
+  }
 }

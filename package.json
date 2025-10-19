@@ -2,6 +2,7 @@
   "name": "herdsman",
   "private": true,
   "author": "PantyDev",
+  "description": "Simple 2d game prototype",
   "version": "1.0.0",
   "type": "module",
   "scripts": {

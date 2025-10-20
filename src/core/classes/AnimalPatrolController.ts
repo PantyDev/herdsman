@@ -1,7 +1,7 @@
 import { Point } from "pixi.js";
-import type { BaseAnimal } from "../../entities/Actors/BaseAnimal";
 import { GAME_HEIGHT, GAME_WIDTH, SPAWN_PADDING } from "../utils/constants";
 import { distance, getRandomInt } from "../../lib/math";
+import type { BaseAnimal } from "../../entities";
 
 class AnimalPatrolController {
     private actor: BaseAnimal | null = null;

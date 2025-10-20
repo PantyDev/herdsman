@@ -1,6 +1,6 @@
 import { Graphics, Container } from 'pixi.js';
 
-export class Yard extends Container {
+class Yard extends Container {
   constructor(x: number, y: number) {
     super();
     const area = new Graphics()
@@ -10,3 +10,5 @@ export class Yard extends Container {
     this.position.set(x, y);
   }
 }
+
+export default Yard;

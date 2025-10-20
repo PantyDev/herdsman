@@ -1,18 +1,13 @@
 import { Application } from 'pixi.js';
-import { Yard } from '../../entities/Yard';
-import { BaseAnimal } from '../../entities/Actors/BaseAnimal';
-import { Hero } from '../../entities/Actors/Hero';
 import PlayerController from './PlayerController';
-import { Cow } from '../../entities/Actors/Cow';
-import { Sheep } from '../../entities/Actors/Sheep';
 import { getRandomItem } from '../../lib/array';
 import { GAME_HEIGHT, GAME_WIDTH, MAX_SPAWN, MIN_SPAWN, SPAWN_PADDING, VISUAL_CONFIG } from '../utils/constants';
 import { getRandomInt } from '../../lib/math';
-import { Pig } from '../../entities/Actors/Pig';
 import { GameOverlay } from '../../ui/GameOverlay';
-import Timer from '../utils/timer';
-import { Game } from './Game';
+import Timer from './Timer';
 import EffectManager from './EffectManager';
+import { Game } from '.';
+import { Hero, Yard, Cow, Sheep, Pig, BaseAnimal } from '../../entities';
 
 class GameManager {
     private app: Application;

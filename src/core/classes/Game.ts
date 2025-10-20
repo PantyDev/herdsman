@@ -1,9 +1,9 @@
 import { Application } from 'pixi.js';
 import GameManager from './GameManager';
 import { COLORS, GAME_HEIGHT, GAME_WIDTH } from '../utils/constants';
-import { loadAssets } from '../utils/assetLoader';
+import loadAssets from '../utils/assetLoader';
 
-export class Game {
+class Game {
   private app: Application;
 
   constructor() {
@@ -28,3 +28,5 @@ export class Game {
     });
   }
 }
+
+export default Game;

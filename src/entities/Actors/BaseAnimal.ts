@@ -1,10 +1,10 @@
 import { Container, Point } from 'pixi.js';
-import BaseActor from './BaseActor';
 import { distance, moveTowards } from '../../lib/math';
-import AnimalPatrolController from '../../core/classes/AnimalPatrolController';
 import type { IVisualData } from '../../types/actor';
+import { AnimalPatrolController } from '../../core/classes';
+import { BaseActor } from '..';
 
-export class BaseAnimal extends BaseActor {
+class BaseAnimal extends BaseActor {
   private leader: Container | null = null;
   private target: Point;
   private patrolController: AnimalPatrolController;
@@ -73,3 +73,5 @@ export class BaseAnimal extends BaseActor {
     return yard.getBounds().rectangle.contains(this.x, this.y);
   }
 }
+
+export default BaseAnimal;

@@ -1,7 +1,7 @@
 import { Assets } from 'pixi.js';
 import { VISUAL_CONFIG } from './constants';
 
-export async function loadAssets(): Promise<void> {
+export default async function loadAssets(): Promise<void> {
   Assets.addBundle('animals', {
     cow: 'assets/actors/cow/cow.json',
     sheep: 'assets/actors/sheep/sheep.json',

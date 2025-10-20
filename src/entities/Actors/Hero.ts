@@ -1,10 +1,10 @@
 import { Point } from 'pixi.js';
-import { BaseAnimal } from './BaseAnimal';
 import BaseActor from './BaseActor';
 import { distance, moveTowards } from '../../lib/math';
 import type { IVisualData } from '../../types/actor';
+import type { BaseAnimal } from '..';
 
-export class Hero extends BaseActor {
+class Hero extends BaseActor {
   private speed = 2;
   private target: Point;
   private followers: BaseAnimal[] = [];
@@ -51,3 +51,5 @@ export class Hero extends BaseActor {
     this.followers = this.followers.filter(a => a !== animal);
   }
 }
+
+export default Hero;

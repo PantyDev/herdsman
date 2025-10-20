@@ -1,5 +1,5 @@
 import type { Container, ContainerChild } from "pixi.js";
-import type BaseActor from "../../entities/Actors/BaseActor";
+import type { BaseActor } from "../../entities";
 
 class PlayerController {
     private stage: Container<ContainerChild> | null = null;

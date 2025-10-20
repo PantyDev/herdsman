@@ -1,4 +1,4 @@
-import { Game } from "./core/classes/Game";
+import { Game } from "./core/classes";
 import "./style.css";
 
 (async () => {
